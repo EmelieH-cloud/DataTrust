@@ -10,7 +10,10 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//hej emelie är bög
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
