@@ -3,7 +3,7 @@
 namespace DataTrust.Data
 {
     public class SampleData
-    {
+    { // kommentar
         public static void Create(AppDbContext database)
         {
             // If there are no fake accounts, add some.
