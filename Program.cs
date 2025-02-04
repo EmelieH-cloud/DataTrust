@@ -1,3 +1,4 @@
+using Azure.Identity;
 using DataTrust.Data;
 using DataTrust.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -87,7 +88,17 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// 1. Spara url i variabel 
+var keyVaultUri = new Uri("https://mydatatrustkeyvault.vault.azure.net/");
+
+// 2. Konfigurera ett Azure Key Vault 
+builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
+
+// 3. Leta efter 
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
+
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

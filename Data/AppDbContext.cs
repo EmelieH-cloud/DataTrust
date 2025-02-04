@@ -1,6 +1,5 @@
 ﻿using DataTrust.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace DataTrust.Data
 {
@@ -11,6 +10,7 @@ namespace DataTrust.Data
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
+
         }
     }
 }
