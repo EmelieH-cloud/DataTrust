@@ -110,8 +110,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AccessControl>();
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-
-
+Console.WriteLine($"Application is running on: {port}");
+// Hej hej 
 var app = builder.Build();
 
 app.Run($"https://0.0.0.0:{port}");
