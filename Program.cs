@@ -110,7 +110,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AccessControl>();
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-
+Console.WriteLine($"Application is running on: {port}");
 
 var app = builder.Build();
 
