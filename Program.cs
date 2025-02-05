@@ -111,9 +111,14 @@ builder.Services.AddScoped<AccessControl>();
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    // Sätt den specifika porten
+    serverOptions.ListenAnyIP(int.Parse(port));
+});
+
 var app = builder.Build();
 
-app.Run($"http://0.0.0.0:{port}");
 
 if (!app.Environment.IsDevelopment())
 {
