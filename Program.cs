@@ -109,6 +109,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AccessControl>();
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(8080);
+});
+
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
