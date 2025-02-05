@@ -99,7 +99,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 // 3. Leta efter 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
-//hej
+//hejhej
 
 builder.Services.AddControllers();
 
