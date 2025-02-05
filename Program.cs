@@ -10,9 +10,12 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// 1. Spara url i variabel 
+var keyVaultUri = new Uri("https://mydatatrustkeyvault.vault.azure.net/");
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://*:{port}");
+// 2. Konfigurera ett Azure Key Vault 
+builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
+
 
 builder.Services.AddAuthentication(options =>
 {
@@ -70,8 +73,8 @@ builder.Services.AddAuthentication(options =>
        }
     }
     */
-    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    options.ClientId = builder.Configuration["GoogleClientId"];
+    options.ClientSecret = builder.Configuration["GoogleClientSecret"];
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.CallbackPath = "/signin-oidc-google";
     options.Scope.Add("openid");
@@ -93,11 +96,6 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
-// 1. Spara url i variabel 
-var keyVaultUri = new Uri("https://mydatatrustkeyvault.vault.azure.net/");
-
-// 2. Konfigurera ett Azure Key Vault 
-builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
 
 // 3. Leta efter 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
