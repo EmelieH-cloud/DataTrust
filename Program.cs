@@ -113,7 +113,7 @@ var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 
 var app = builder.Build();
 
-app.Run($"https://0.0.0.0:{port}");
+app.Run($"http://0.0.0.0:{port}");
 
 if (!app.Environment.IsDevelopment())
 {
