@@ -10,6 +10,9 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+
 // 1. Spara url i variabel 
 var keyVaultUri = new Uri("https://mydatatrustkeyvault.vault.azure.net/");
 
